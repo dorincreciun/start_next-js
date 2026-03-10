@@ -1,0 +1,16 @@
+# Directoare de build/output
+node_modules
+coverage
+
+# Config și lock-uri
+package-lock.json
+pnpm-lock.yaml
+
+# Artefacte IDE
+.idea
+.vscode
+
+# Alte fișiere statice
+public/*
+*.png
+.prettierrc.ts
