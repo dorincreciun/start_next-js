@@ -2,8 +2,8 @@ import { type ReactNode } from "react"
 
 import type { Metadata } from "next"
 
-import "@/shared/config/globals.css"
-import { dmSans } from "@/shared/config/fonts"
+import "@app/styles/globals.css"
+import { dmSans } from "@/shared/config"
 import { Footer } from "@/widgets/footer"
 import { Header } from "@/widgets/header"
 
