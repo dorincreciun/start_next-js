@@ -3,9 +3,9 @@ import { type ReactNode } from "react"
 import type { Metadata } from "next"
 
 import "@app/styles/globals.css"
-import { dmSans } from "@/shared/config"
-import { Footer } from "@/widgets/footer"
-import { Header } from "@/widgets/header"
+import { dmSans } from "@shared/config"
+import { Footer } from "@widgets/footer"
+import { Header } from "@widgets/header"
 
 export const metadata: Metadata = {
     title: {
