@@ -27,7 +27,8 @@ const eslintConfig = defineConfig([
                 { type: "entities", pattern: "src/entities/**" },
                 { type: "shared", pattern: "src/shared/**" },
             ],
-            "boundaries/ignore": ["**/*.test.*", "**/*.spec.*"],
+            "boundaries/dependency-nodes": ["import"],
+            "boundaries/ignore": ["**/*.example-1.*", "**/*.spec.*"],
         },
         languageOptions: {
             parser: tsParser,
@@ -38,26 +39,53 @@ const eslintConfig = defineConfig([
         },
         rules: {
             // --- FSD Layer Rules ---
-            "boundaries/element-types": [
+            "boundaries/dependencies": [
                 "error",
                 {
                     default: "disallow",
                     rules: [
-                        // app poate importa orice
                         {
-                            from: "app",
-                            allow: ["pages", "widgets", "features", "entities", "shared"],
+                            from: { type: "app" },
+                            allow: [
+                                { to: { type: "pages" } },
+                                { to: { type: "widgets" } },
+                                { to: { type: "features" } },
+                                { to: { type: "entities" } },
+                                { to: { type: "shared" } },
+                            ],
                         },
-                        // pages -> mai jos de pages
-                        { from: "pages", allow: ["widgets", "features", "entities", "shared"] },
-                        // widgets -> mai jos de widgets
-                        { from: "widgets", allow: ["features", "entities", "shared"] },
-                        // features -> mai jos de features
-                        { from: "features", allow: ["entities", "shared"] },
-                        // entities -> doar shared
-                        { from: "entities", allow: ["shared"] },
-                        // shared -> nimic intern
-                        { from: "shared", allow: [] },
+                        {
+                            from: { type: "pages" },
+                            allow: [
+                                { to: { type: "widgets" } },
+                                { to: { type: "features" } },
+                                { to: { type: "entities" } },
+                                { to: { type: "shared" } },
+                            ],
+                        },
+                        {
+                            from: { type: "widgets" },
+                            allow: [
+                                { to: { type: "features" } },
+                                { to: { type: "entities" } },
+                                { to: { type: "shared" } },
+                            ],
+                        },
+                        {
+                            from: { type: "features" },
+                            allow: [
+                                { to: { type: "entities" } },
+                                { to: { type: "shared" } },
+                            ],
+                        },
+                        {
+                            from: { type: "entities" },
+                            allow: [{ to: { type: "shared" } }],
+                        },
+                        {
+                            from: { type: "shared" },
+                            allow: [],
+                        },
                     ],
                 },
             ],
