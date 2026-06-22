@@ -2,7 +2,7 @@ import { type ReactNode } from "react"
 
 import type { Metadata } from "next"
 
-import "@app/styles/globals.css"
+import "@app/styles/index.css"
 
 import { dmSans } from "@app/fonts"
 import { RootLayoutShell } from "@app/layouts"
